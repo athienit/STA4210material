@@ -1,8 +1,9 @@
-copier=read.csv("https://raw.githubusercontent.com/athienit/STA6166material/master/copiers.csv",skip=1,header=TRUE)
+copier=read.csv("https://raw.githubusercontent.com/athienit/STA4210material/master/copiers.csv",skip=1,header=TRUE)
 plot(copier$Copiers,copier$Time,pch=16,xlab="Quantity",ylab="Time (in minutes)",main="Scatterplot")
 
 reg=lm(Time~Copiers,data=copier)
 summary(reg)
+confint(reg)
 anova(reg)
 abline(reg)
 
