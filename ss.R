@@ -14,7 +14,6 @@ abline(lm(y~x), lty = 2) #plot lm
 legend("bottomright", legend = c("ss", "lm"), lty = 1:2,lwd=2:1, bty = "n")
 
 summary.ss(reg)
-
 predict.ss(reg,x=0.3)
 
-plot.ss(reg)
+plot.ss(reg) #plots confidence band
