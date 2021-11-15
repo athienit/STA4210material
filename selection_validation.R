@@ -1,6 +1,4 @@
-                    
-
-cruise <- read.fwf("http://www.stat.ufl.edu/~winner/data/cruise_ship.dat", width=c(20,20,rep(8,7)),
+cruise <- read.fwf("https://raw.githubusercontent.com/athienit/STA4210material/main/cruise_ship.dat.txt", width=c(20,20,rep(8,7)),
                    col.names=c("ship", "cline", "age", "tonnage", "passengers", "length", "cabins", "passdens", "crew"))
 
 ####### Fit Full model
@@ -39,7 +37,7 @@ dblm(formula(fit3),method="OCV",data=cruise)$gcv
 # (forward) adds one term at a time if the individual t-test pvalue<=alpha.enter
 # OR 
 # (both) performs forward until done and then checks existing model by performing backwards
-source("http://www.stat.ufl.edu/~athienit/stepT.R")
+source("https://raw.githubusercontent.com/athienit/STA4210material/main/stepT.R")
 stepT(fit0,alpha.rem=0.2,direction="backward")
 stepT(fit0,alpha.enter=0.2,direction="forward")
 stepT(fit0,alpha.rem=0.2,alpha.enter=0.15,direction="both")
@@ -49,8 +47,8 @@ stepT(fit0,alpha.rem=0.2,alpha.enter=0.15,direction="both")
 ######### fit1 and fit2 represent "extreme" models
 
 library(MASS)
-fit1 <- lm(crew ~ age + tonnage + passengers + length + cabins + passdens)
-fit2 <- lm(crew ~ 1)
+fit1=lm(crew ~ age + tonnage + passengers + length + cabins + passdens, data=cruise)
+fit2=lm(crew ~ 1, data=cruise)
 stepAIC(fit1,direction="backward")
 stepAIC(fit2,direction="forward",scope=list(upper=fit1,lower=fit2))
 stepAIC(fit2,direction="both",scope=list(upper=fit1,lower=fit2))
