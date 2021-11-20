@@ -16,7 +16,17 @@ library(MASS)
 reg.iwls=rlm(pressure~age,data=heart,wt.method="inv.var",method="MM")
 summary(reg.iwls)
 
-
 # Method 2
 glm.reg=glm(pressure~age,data=heart,method="glm.fit")
 summary(reg.iwls)
+
+##### ONE ITERATION MANUALLY of IRLS
+#(1) obtain residuals
+e=residuals(reg)
+#(2) obtain robust residuals
+u=e/mad(e)
+#(3) use huber weight function
+w=psi.huber(u)
+#(4) fit WLS
+reg_v2=lm(formula(reg),weights=w,data=heart)
+#(5) obtain residuals from this model and repeat
