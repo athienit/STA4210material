@@ -1,4 +1,4 @@
-dat=read.csv("http://www.stat.ufl.edu/~athienit/STA4210/Examples/safe_reg.csv",header=TRUE)
+dat=read.csv("https://raw.githubusercontent.com/athienit/STA4210material/main/safe_reg.csv",header=TRUE)
 # response is "lost hours"
 # predictor1 is "number of employess"
 # predictor2 is 1 for safety program, 0 otherwise
