@@ -24,7 +24,7 @@ hat=hatvalues(fit3)
 hat[which(hat>2*5/n)]
 
 ### DFFITS
-dffits(fit3)[which(dffits(fit3)>2*sqrt(5/n))]
+dffits(fit3)[which(abs(dffits(fit3))>2*sqrt(5/n))]
 
 ### Cooks D
 cd=cooks.distance(fit3)
