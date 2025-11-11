@@ -65,7 +65,8 @@ cruise.cv.samp <- sample(1:length(cruise$crew),100,replace=FALSE)
 cruise.cv.in <- cruise[cruise.cv.samp,]
 cruise.cv.out <- cruise[-cruise.cv.samp,]
 
-### Check if training sample (and validation) is similar to the whole dataset 
+### Check if training sample (and validation) is similar to the whole dataset
+# Basic summary check, lets ask AI to recommend more
 summary(cruise[,4:7])
 summary(cruise.cv.in[,4:7])
 summary(cruise.cv.out[,4:7])
@@ -74,8 +75,8 @@ summary(cruise.cv.out[,4:7])
 
 fit.cv.in <- lm(crew ~tonnage + passengers + length + cabins,
                 data=cruise.cv.in)
-summary(fit.cv.in)
-anova(fit.cv.in)
+mse_in <- anova(fit.cv.in)["Residuals", "Mean Sq"]
+print(mse_in)
 
 ##### Obtain Predicted values and prediction errors for validation sample
 ##### Regression is based on same 4 predictors as fit3 (columns 4:7 of cruise)
